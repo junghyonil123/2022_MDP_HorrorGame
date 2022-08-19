@@ -17,6 +17,8 @@ public class Enemy : MonoBehaviour
     float timer;
     int waitingTime;
 
+    public bool isStartStop;
+
     public bool stun=false;
     private void Awake()
     {
@@ -24,6 +26,8 @@ public class Enemy : MonoBehaviour
         audiosourece = GetComponent<AudioSource>();
         navAgent = GetComponent<NavMeshAgent>();
         rigid = GetComponent<Rigidbody>();
+        if(isStartStop)
+        navstop();
     }
 
     private void Start()
@@ -33,6 +37,11 @@ public class Enemy : MonoBehaviour
         waitingTime = 3;
         animator.SetBool("IS_STUN", false);
 
+    }
+
+    public void Houl()
+    {
+        audiosourece.Play();
     }
 
     // Update is called once per frame
@@ -45,13 +54,13 @@ public class Enemy : MonoBehaviour
             navAgent.SetDestination(target.position);
         }else if (stun == true){
             navAgent.Stop();
-            animator.SetBool("IS_STUN", true);
+            //animator.SetBool("IS_STUN", true);
             timer += Time.deltaTime;
             if (timer > waitingTime)
             {
                 timer = 0;
                 stun = false;
-                animator.SetBool("IS_STUN", false);
+                //animator.SetBool("IS_STUN", false);
             }
         }
     }
@@ -62,12 +71,12 @@ public class Enemy : MonoBehaviour
         rigid.angularVelocity = Vector3.zero;
     }
 
-    void navstop()
+    public void navstop()
     {
         this.navAgent.isStopped = true;
     }
 
-    void navgo()
+    public void navgo()
     {
         this.navAgent.isStopped = false;
     }
