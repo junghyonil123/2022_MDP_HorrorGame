@@ -10,21 +10,19 @@ public class Key2Action : MonoBehaviour
 
     public bool IsPlayerIn = false;
     public bool isTricked = false;
-    public float coolTime = 2f;
+    public float coolTime = 1f;
+    public float substractValue = 0.4f;
 
     private void Update()
     {
-        if (coolTime <= 0)
-        {
-            girlToiletLight.SetActive(true);
-            girlDoll.SetActive(true);
-        }
+        
     }
 
     IEnumerator DoorOff()
     {
-        while (girlToiletDoor.transform.rotation.y > -90f)
-        {
+        
+        while (girlToiletDoor.transform.rotation.y > -0.70f)
+        {Debug.Log(girlToiletDoor.transform.rotation.y);
             girlToiletDoor.transform.Rotate(new Vector3(0, -(100f / 60f), 0));
             yield return null;
         }
@@ -33,14 +31,38 @@ public class Key2Action : MonoBehaviour
     IEnumerator LightOnOff()
     {
 
-        while (coolTime > 0)
-        {
             girlToiletLight.SetActive(true);
-            yield return new WaitForSeconds(coolTime);
+            yield return new WaitForSeconds(1f);
             girlToiletLight.SetActive(false);
-            yield return new WaitForSeconds(coolTime);
-            coolTime -= 0.1f;
-        }
+            yield return new WaitForSeconds(1f);
+
+            girlToiletLight.SetActive(true);
+            yield return new WaitForSeconds(0.7f);
+            girlToiletLight.SetActive(false);
+            yield return new WaitForSeconds(0.7f);
+
+            girlToiletLight.SetActive(true);
+            yield return new WaitForSeconds(0.3f);
+            girlToiletLight.SetActive(false);
+            yield return new WaitForSeconds(0.3f);
+
+            girlToiletLight.SetActive(true);
+            yield return new WaitForSeconds(0.1f);
+            girlToiletLight.SetActive(false);
+            yield return new WaitForSeconds(0.1f);
+
+            for (int i = 0; i < 7; i++)
+            {
+                girlToiletLight.SetActive(true);
+                yield return new WaitForSeconds(0.05f);
+                girlToiletLight.SetActive(false);
+                yield return new WaitForSeconds(0.05f);
+            }
+
+            girlToiletLight.SetActive(true);
+            girlDoll.SetActive(true);
+
+       
        
     }
 
