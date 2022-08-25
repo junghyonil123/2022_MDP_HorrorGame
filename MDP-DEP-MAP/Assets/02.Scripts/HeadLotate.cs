@@ -11,7 +11,7 @@ public class HeadLotate : MonoBehaviour
 
 	public float speed;
 
-	public bool catch_Key1 = false;
+	// bool catch_Key1 = false;
 	public bool is_head_rotation_finish = false;
 
 	public static HeadLotate instance = null;
@@ -32,24 +32,32 @@ public class HeadLotate : MonoBehaviour
 	}
 
 	void Update()
-
 	{
-		if (catch_Key1 && !is_head_rotation_finish)
-			StartCoroutine("FollowTarget");
+		
 	}
+
 	IEnumerator FollowTarget()
 	{
+		
 		if (enemy != null && !is_head_rotation_finish)
 		{
 			controller.GetComponent<ContinuousTurnProviderBase>().enabled = false;
 			Vector3 dir = enemy.transform.position - this.transform.position;
-			this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * speed);
-			if (this.transform.rotation == Quaternion.LookRotation(dir))
-			{
-				is_head_rotation_finish = true;
-				controller.SetActive(true);
+			dir.Normalize();
+            while (true)
+            {
+				this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * speed);
+				if (this.transform.rotation == Quaternion.LookRotation(dir))
+				{
+					is_head_rotation_finish = true;
+					controller.GetComponent<ContinuousTurnProviderBase>().enabled = true;
+
+					yield return new WaitForSeconds(1f);
+					break;
+				}
+				yield return null;
 			}
 		}
-		yield return null;
+		
 	}
 }

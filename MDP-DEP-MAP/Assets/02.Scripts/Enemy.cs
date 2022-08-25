@@ -52,17 +52,18 @@ public class Enemy : MonoBehaviour
         {
             freezevelocity();
             navAgent.SetDestination(target.position);
-        }else if (stun == true){
-            navAgent.Stop();
-            //animator.SetBool("IS_STUN", true);
-            timer += Time.deltaTime;
-            if (timer > waitingTime)
-            {
-                timer = 0;
-                stun = false;
-                //animator.SetBool("IS_STUN", false);
-            }
         }
+        //else if (stun == true){
+        //    navAgent.Stop();
+        //    //animator.SetBool("IS_STUN", true);
+        //    timer += Time.deltaTime;
+        //    if (timer > waitingTime)
+        //    {
+        //        timer = 0;
+        //        stun = false;
+        //        //animator.SetBool("IS_STUN", false);
+        //    }
+        //}
     }
 
     void freezevelocity()
@@ -81,30 +82,30 @@ public class Enemy : MonoBehaviour
         this.navAgent.isStopped = false;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            animator.SetTrigger("CATCH");
-            audiosourece.clip = catch_audio;
-            audiosourece.Play();
-        }
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.tag == "Player")
+    //    {
+    //        //animator.SetTrigger("CATCH");
+    //        //audiosourece.clip = catch_audio;
+    //        //audiosourece.Play();
+    //    }
+    //}
 
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            Debug.Log("잡았당");
-            kill_player();
-        }
-    }
+    //private void OnCollisionStay(Collision collision)
+    //{
+    //    if (collision.gameObject.tag == "Player")
+    //    {
+    //        Debug.Log("잡았당");
+    //        //kill_player();
+    //    }
+    //}
 
-    public void kill_player()
-    {
+    //public void kill_player()
+    //{
 
-        mainCamera.transform.position = player_kill_pos.position;
-        mainCamera.transform.eulerAngles = new Vector3(0, player_kill_pos.eulerAngles.y -200.0f, 0);
+    //    maincamera.transform.position = player_kill_pos.position;
+    //    maincamera.transform.eulerangles = new vector3(0, player_kill_pos.eulerangles.y -200.0f, 0);
 
-    }
+    //}
 }
