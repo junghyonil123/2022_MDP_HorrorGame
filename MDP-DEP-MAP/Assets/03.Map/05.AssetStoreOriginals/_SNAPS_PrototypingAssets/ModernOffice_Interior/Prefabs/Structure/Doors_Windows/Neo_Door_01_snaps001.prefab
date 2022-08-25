@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4462618341929852}
   - component: {fileID: 33485690003626002}
   - component: {fileID: 23722170975101654}
+  - component: {fileID: 9136673200134544224}
   - component: {fileID: 65558739152625350}
   m_Layer: 0
   m_Name: Neo_Door_01_snaps001
@@ -55,6 +56,8 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -67,6 +70,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -79,6 +83,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &9136673200134544224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191596092261060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5af0a2379abf9b43b7e83f0924204dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  last_state: 1
 --- !u!65 &65558739152625350
 BoxCollider:
   m_ObjectHideFlags: 0
