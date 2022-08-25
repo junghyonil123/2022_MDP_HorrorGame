@@ -4,8 +4,19 @@ using UnityEngine;
 
 public class Key2Action : MonoBehaviour
 {
+    public static Key2Action instanse;
+
+    private void Awake()
+    {
+        if(instanse == null)
+        {
+            instanse = this;
+        }
+    }
+
     public GameObject girlToiletLight;
-    public GameObject girlDoll;
+    public GameObject girlToiletSpotLight;
+    public GameObject girlGhost;
     public GameObject girlToiletDoor;
     public AudioSource audio;
 
@@ -70,9 +81,12 @@ public class Key2Action : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
 
-        girlDoll.SetActive(true);
-        girlToiletLight.SetActive(true);
-
+       
+        girlToiletLight.SetActive(false);
+        girlToiletSpotLight.SetActive(true);
+        girlGhost.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        StartCoroutine("GhostGirlAwake");
 
     }
     public void LightOn()
@@ -89,6 +103,16 @@ public class Key2Action : MonoBehaviour
         audio.Play();
     }
 
+    IEnumerator GhostGirlAwake()
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            girlGhost.transform.localScale += new Vector3(0f, 0f, 0.015f);
+            girlGhost.transform.Rotate(new Vector3(0f, 0f, 0.02f));
+            yield return null;
+        }
+        
+    }
 
     private void OnTriggerEnter(Collider other)
     {
