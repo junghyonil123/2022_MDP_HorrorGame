@@ -5,7 +5,8 @@ using UnityEngine;
 public class Key2Action : MonoBehaviour
 {
     public GameObject girlToiletLight;
-    public GameObject girlDoll;
+    public GameObject girlToiletSpotLight;
+    public GameObject girlGhost;
     public GameObject girlToiletDoor;
     public AudioSource audio;
 
@@ -62,7 +63,7 @@ public class Key2Action : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
 
 
-        for (int i = 0; i < 13; i++)
+        for (int i = 0; i < 10; i++)
         {
             LightOn();
             yield return new WaitForSeconds(0.05f);
@@ -70,11 +71,33 @@ public class Key2Action : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
 
-        girlDoll.SetActive(true);
-        girlToiletLight.SetActive(true);
-
+        StartCoroutine("GirlGhostWake");
+        girlToiletLight.SetActive(false);
+        girlToiletSpotLight.SetActive(true);
 
     }
+
+    IEnumerator GirlGhostWake()
+    {
+        girlGhost.SetActive(true);
+        girlGhost.GetComponent<AudioSource>().Play();
+        yield return new WaitForSeconds(2f);
+
+        for (int i = 0; i < 100; i++)
+        {
+
+            girlGhost.transform.localScale += new Vector3(0f, 0f, 0.015f);
+            girlGhost.transform.position += (new Vector3(0f, 0f, 0.004f));
+
+            yield return null;
+                
+        }
+
+        girlGhost.GetComponent<Enemy>().navgo();
+
+    }
+
+
     public void LightOn()
     {
         girlToiletLight.SetActive(true);

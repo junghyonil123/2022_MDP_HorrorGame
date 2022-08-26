@@ -12,7 +12,8 @@ public class Enemy : MonoBehaviour
     private Animator animator;
     private AudioSource audiosourece;
     public AudioClip catch_audio;
-    public Camera mainCamera;
+    public GameObject mainCamera;
+    public GameObject subCamera;
 
     float timer;
     int waitingTime;
@@ -50,6 +51,7 @@ public class Enemy : MonoBehaviour
         
         if (stun == false)
         {
+        
             freezevelocity();
             navAgent.SetDestination(target.position);
         }
@@ -82,30 +84,33 @@ public class Enemy : MonoBehaviour
         this.navAgent.isStopped = false;
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.tag == "Player")
-    //    {
-    //        //animator.SetTrigger("CATCH");
-    //        //audiosourece.clip = catch_audio;
-    //        //audiosourece.Play();
-    //    }
-    //}
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            //animator.settrigger("catch");
+            //audiosourece.clip = catch_audio;
+            //audiosourece.play();
+        }
+    }
 
-    //private void OnCollisionStay(Collision collision)
-    //{
-    //    if (collision.gameObject.tag == "Player")
-    //    {
-    //        Debug.Log("잡았당");
-    //        //kill_player();
-    //    }
-    //}
 
-    //public void kill_player()
-    //{
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.Log("잡았당");
+            kill_player();
+        }
+    }
 
-    //    maincamera.transform.position = player_kill_pos.position;
-    //    maincamera.transform.eulerangles = new vector3(0, player_kill_pos.eulerangles.y -200.0f, 0);
 
-    //}
+    public void kill_player()
+    {
+        mainCamera.SetActive(false);
+        subCamera.SetActive(true);
+        transform.localScale = new Vector3(1.5f, 1.5f, 0f);
+        subCamera.transform.position = player_kill_pos.position + new Vector3(0f,0f,0.5f);
+        subCamera.transform.eulerAngles = new Vector3(0, player_kill_pos.eulerAngles.y - 200.0f, 0);
+    }
 }
