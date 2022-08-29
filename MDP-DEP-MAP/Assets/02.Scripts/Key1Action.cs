@@ -18,7 +18,6 @@ public class Key1Action : MonoBehaviour
             key1Light.SetActive(true);
             key1Light.GetComponent<AudioSource>().Play();
             Key1Enemi.GetComponent<Animator>().SetBool("CatchKey", true);
-            //HeadLotate.instance.catch_Key1 = true;
             HeadLotate.instance.StartCoroutine("FollowTarget");
         }
     }

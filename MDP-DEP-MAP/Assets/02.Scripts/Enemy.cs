@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
         
         timer = 0f;
         waitingTime = 3;
-        animator.SetBool("IS_STUN", false);
+        animator.SetBool("IsStun", false);
 
     }
 
@@ -81,6 +81,7 @@ public class Enemy : MonoBehaviour
 
     public void navgo()
     {
+        Debug.Log("출발합니다");
         this.navAgent.isStopped = false;
     }
 

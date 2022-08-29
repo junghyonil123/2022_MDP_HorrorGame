@@ -56606,7 +56606,14 @@ AnimationClip:
   - time: 0
     functionName: navgo
     data: 
-    objectReferenceParameter: {fileID: 11500000, guid: a028f4629fa48b64e830202fe9947780, type: 3}
+    objectReferenceParameter: {fileID: 11500000, guid: a81dbfb2271c26340acf25632bb1fdfa, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
+    functionName: AudioSet_Walk
+    data: 
+    objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
