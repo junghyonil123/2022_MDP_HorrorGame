@@ -1,18 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class DoorOpen : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject obj;
+    public float last_state = 1;
+    public bool is_Open_Door = true;
+    public void Open()
     {
-        
+        if (is_Open_Door == true)
+        {
+            Debug.Log("Open");
+            obj.GetComponent<XRGrabInteractable>().enabled = false;
+            StartCoroutine("DoorOff");
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator DoorOff()
     {
-        
+        is_Open_Door = false;
+        for (int i = 0; i < 90; i++)
+        {
+            transform.Rotate(new Vector3(0, 1 * last_state, 0));
+            yield return null;
+        }
+        last_state *= -1;
+        is_Open_Door = true;
+        obj.GetComponent<XRGrabInteractable>().enabled = true;
     }
+
+
 }

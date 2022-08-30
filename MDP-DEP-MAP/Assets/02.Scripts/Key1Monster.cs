@@ -45,7 +45,7 @@ public class Key1Monster : MonoBehaviour
     IEnumerator Eat(Transform target)
     {
         
-        transform.position -= new Vector3(0f, -0.5f, 0f);
+        transform.position -= new Vector3(0f, -1.5f, 0f);
 
         for (int i = 0; i < 100; i++)
         {
