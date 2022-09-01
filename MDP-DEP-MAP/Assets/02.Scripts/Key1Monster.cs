@@ -21,6 +21,10 @@ public class Key1Monster : MonoBehaviour
 
     public GameObject mainCamera;
     public GameObject subCamera;
+<<<<<<< Updated upstream
+=======
+    public GameObject food;
+>>>>>>> Stashed changes
 
     public bool stun = false;
     float timer;
@@ -52,13 +56,26 @@ public class Key1Monster : MonoBehaviour
             target.position = foodTransform.position;
             yield return null;
         }
+<<<<<<< Updated upstream
+=======
+
+
+        yield return new WaitForSeconds(2f);
+        EatFinish();
+>>>>>>> Stashed changes
     }
 
     public void EatFinish()
     {
+<<<<<<< Updated upstream
         //뇌를 다먹었을때 진행되는 함수
         //뇌를 제거하고 플래그를 활성화시킴 
         //타겟을 플레이어로 바꿈
+=======
+        Debug.Log("실행되쩌염");
+        Destroy(food);
+        target = playerTransform;
+>>>>>>> Stashed changes
     }
 
     public void navgo()
@@ -135,12 +152,22 @@ public class Key1Monster : MonoBehaviour
     }
 
     private bool isCanUseEat = true;
+<<<<<<< Updated upstream
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
             //플레이어와 닿았다면 killPlayer를 실행
 
+=======
+    private bool isCanKill = true;
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player" && isCanKill)
+        {
+            //플레이어와 닿았다면 killPlayer를 실행
+            isCanKill = false;
+>>>>>>> Stashed changes
             animator.SetTrigger("CatchPlayer");
             AudioSet_catch();
             StartCoroutine("killPlayer");
@@ -152,6 +179,10 @@ public class Key1Monster : MonoBehaviour
             isCanUseEat = false;
             animator.SetTrigger("Eat");
             StartCoroutine(Eat(other.transform));
+<<<<<<< Updated upstream
+=======
+            food = other.gameObject;
+>>>>>>> Stashed changes
         }
     }
 
