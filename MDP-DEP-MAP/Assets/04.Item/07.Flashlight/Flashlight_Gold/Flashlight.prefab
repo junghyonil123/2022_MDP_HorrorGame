@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 3095553633298148139}
   m_Layer: 0
   m_Name: WhiteLight
-  m_TagString: Untagged
+  m_TagString: Flash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -231,6 +231,7 @@ MonoBehaviour:
   currentEnergy: 0
   maxEnergy: 30
   isLightOn: 0
+  isCoroutineUsed: 0
 --- !u!1 &859873076302526842
 GameObject:
   m_ObjectHideFlags: 0

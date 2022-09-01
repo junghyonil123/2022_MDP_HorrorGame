@@ -71,29 +71,9 @@ public class Key2Action : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
 
-        StartCoroutine("GirlGhostWake");
+        girlGhost.SetActive(true);
         girlToiletLight.SetActive(false);
         girlToiletSpotLight.SetActive(true);
-
-    }
-
-    IEnumerator GirlGhostWake()
-    {
-        girlGhost.SetActive(true);
-        girlGhost.GetComponent<AudioSource>().Play();
-        yield return new WaitForSeconds(2f);
-
-        for (int i = 0; i < 100; i++)
-        {
-
-            girlGhost.transform.localScale += new Vector3(0f, 0f, 0.015f);
-            girlGhost.transform.position += (new Vector3(0f, 0f, 0.004f));
-
-            yield return null;
-                
-        }
-
-        girlGhost.GetComponent<Enemy>().navgo();
 
     }
 

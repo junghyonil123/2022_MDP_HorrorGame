@@ -8,14 +8,15 @@ TagManager:
   - enemy
   - Food
   - Dog
+  - Flash
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Key
   - Water
   - UI
-  - 
+  - Player
   - 
   - 
   - 

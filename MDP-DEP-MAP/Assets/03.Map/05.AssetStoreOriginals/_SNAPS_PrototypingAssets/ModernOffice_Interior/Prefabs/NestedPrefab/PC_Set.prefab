@@ -233,6 +233,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Laptop_01_snaps001
       objectReference: {fileID: 0}
+    - target: {fileID: 1163334601776374, guid: 88cbb557f01af264c8417bbd28ff33c4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4811157832504852, guid: 88cbb557f01af264c8417bbd28ff33c4, type: 3}
       propertyPath: m_RootOrder
       value: 5
