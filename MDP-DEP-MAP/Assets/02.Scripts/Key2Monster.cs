@@ -18,9 +18,7 @@ public class Key2Monster : MonoBehaviour
     public GameObject mainCamera;
     public GameObject subCamera;
     public Avatar avatar;
-    
-    //public metrial
-
+   
     public float dmg_Timer;
 
 
@@ -97,6 +95,8 @@ public class Key2Monster : MonoBehaviour
             audiosourece.clip = catch_audio;
             audiosourece.Play();
             StartCoroutine(killPlayer());
+            animator.SetBool("isWalk", false);
+            navAgent.isStopped = true;
         }
         else if (other.tag == "Flash")
         {

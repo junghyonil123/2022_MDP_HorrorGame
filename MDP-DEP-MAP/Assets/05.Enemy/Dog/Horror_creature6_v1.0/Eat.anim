@@ -1615,7 +1615,14 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 1.9833333
+  - time: 0
+    functionName: navstop
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.95
     functionName: EatFinish
     data: 
     objectReferenceParameter: {fileID: 11500000, guid: 2d22922d265a6a54eb49db18ce3cb57f, type: 3}

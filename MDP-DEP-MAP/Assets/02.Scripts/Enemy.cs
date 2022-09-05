@@ -85,16 +85,6 @@ public class Enemy : MonoBehaviour
         this.navAgent.isStopped = false;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            //animator.settrigger("catch");
-            //audiosourece.clip = catch_audio;
-            //audiosourece.play();
-        }
-    }
-
 
     private void OnTriggerStay(Collider other)
     {
@@ -105,6 +95,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    
 
     public void kill_player()
     {

@@ -4,11 +4,24 @@ using UnityEngine;
 
 public class FindFood : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    Key1Monster _dog;
+    public GameObject brain;
+
+    private void Awake()
     {
-        if (other.gameObject.tag == "Dog")
-        {
-            GameObject.Find("Dog").GetComponent<Key1Monster>().target = transform;
-        }
+        _dog = GameObject.Find("Dog").GetComponent<Key1Monster>();
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+
+        if (other.gameObject.tag == "Dog" && _dog.isCanFindFood)
+        {
+            _dog.isCanFindFood = false;
+            _dog.target = brain.transform;
+            gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        }
+
+    }
+
 }

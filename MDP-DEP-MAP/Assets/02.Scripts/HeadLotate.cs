@@ -30,18 +30,14 @@ public class HeadLotate : MonoBehaviour
 		}
 
 	}
-
-	void Update()
-	{
-		
-	}
-
 	IEnumerator FollowTarget()
 	{
 		
 		if (enemy != null && !is_head_rotation_finish)
 		{
 			controller.GetComponent<ContinuousTurnProviderBase>().enabled = false;
+			controller.GetComponent<ContinuousMoveProviderBase>().enabled = false;
+
 			Vector3 dir = enemy.transform.position - this.transform.position;
 			dir.Normalize();
             while (true)
@@ -49,9 +45,6 @@ public class HeadLotate : MonoBehaviour
 				this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * speed);
 				if (this.transform.rotation == Quaternion.LookRotation(dir))
 				{
-					is_head_rotation_finish = true;
-					controller.GetComponent<ContinuousTurnProviderBase>().enabled = true;
-
 					yield return new WaitForSeconds(1f);
 					break;
 				}
@@ -59,5 +52,12 @@ public class HeadLotate : MonoBehaviour
 			}
 		}
 		
+	}
+
+	public void HeadRotate_Finish()
+    {
+		is_head_rotation_finish = true;
+		controller.GetComponent<ContinuousTurnProviderBase>().enabled = true;
+		controller.GetComponent<ContinuousMoveProviderBase>().enabled = true;
 	}
 }

@@ -9,6 +9,7 @@ TagManager:
   - Food
   - Dog
   - Flash
+  - Floor
   layers:
   - Default
   - TransparentFX
@@ -17,8 +18,8 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
-  - 
+  - Dog
+  - Brain
   - 
   - 
   - 
