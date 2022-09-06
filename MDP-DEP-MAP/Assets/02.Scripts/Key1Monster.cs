@@ -161,7 +161,7 @@ public class Key1Monster : MonoBehaviour
     public bool isCanKill = true;
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Player" && isCanKill)
+        if (other.gameObject.CompareTag("Player") && isCanKill)
         {
             //플레이어와 닿았다면 killPlayer를 실행
             isCanKill = false;

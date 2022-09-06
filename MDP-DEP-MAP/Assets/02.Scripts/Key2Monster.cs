@@ -90,7 +90,7 @@ public class Key2Monster : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player" && isCanKill)
+        if (other.gameObject.CompareTag("Player") && isCanKill)
         {
             audiosourece.clip = catch_audio;
             audiosourece.Play();
