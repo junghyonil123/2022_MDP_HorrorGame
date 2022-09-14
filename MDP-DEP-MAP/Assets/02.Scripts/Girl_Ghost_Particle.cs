@@ -20,6 +20,7 @@ public class Girl_Ghost_Particle : MonoBehaviour
 
     public IEnumerator Particle_Start()
     {
+        Debug.Log("Çª¿Í¿À¿Í¾Ç");
         particle.Play();
         yield return new WaitForSeconds(3f);
         particle.Stop();

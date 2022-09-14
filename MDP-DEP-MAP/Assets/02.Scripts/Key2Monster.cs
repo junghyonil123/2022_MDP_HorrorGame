@@ -20,10 +20,11 @@ public class Key2Monster : MonoBehaviour
     public Avatar avatar;
    
     public float dmg_Timer;
-
+    public bool awakeSuccess = false;
 
     private void OnEnable()
     {
+        
         audiosourece.Play();
         StartCoroutine("Wake");
     }
@@ -45,6 +46,8 @@ public class Key2Monster : MonoBehaviour
 
         animator.SetBool("isWalk", true);
         navAgent.isStopped = false;
+        awakeSuccess = true;
+
 
     }
 
@@ -113,23 +116,30 @@ public class Key2Monster : MonoBehaviour
 
         //subCamera를 지속적으로 몬스터의 앞으로 이동시킴, 몬스터가 플레이어를 무는듯한 효과
 
-        for (int i = 0; i < 20000; i++)
+        for (int i = 0; i < 150; i++)
         {
             subCamera.transform.position = playerKillPos.position + new Vector3(0f, 0f, 0f);
             subCamera.transform.eulerAngles = new Vector3(0, playerKillPos.eulerAngles.y, 0);
             yield return null;
         }
+            GameOverCanvas.instance.die();
     }
 
-    bool is_can_hit = true;
+    public  bool is_can_hit = true;
+
+    public void CanHit()
+    {
+       is_can_hit = true;
+    }
+
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Flash")
+        if (other.tag == "Flash" && awakeSuccess)
         {
             dmg_Timer += Time.deltaTime;
             if (dmg_Timer >= 1)
             {
-                GameObject.Find("Girl_Ghost_Particle").GetComponent<Girl_Ghost_Particle>().Particle_Start();
+                GameObject.Find("Girl_Ghost_Particle").GetComponent<Girl_Ghost_Particle>().StartCoroutine("Particle_Start");
             }
 
             if (dmg_Timer >= 3)
@@ -148,12 +158,14 @@ public class Key2Monster : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    public void NotDie()
     {
         dmg_Timer = 0;
         audiosourece.clip = laugh;  //오디오 원래대로 돌리기
         audiosourece.Play();
         animator.avatar = avatar;
+        animator.SetBool("isWalk", true);
         navAgent.isStopped = false;
+        is_can_hit = true;
     }
 }

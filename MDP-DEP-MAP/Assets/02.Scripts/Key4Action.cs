@@ -10,7 +10,6 @@ public class Key4Action : MonoBehaviour
 
     public GameObject jingjing_1;
     public GameObject jingjing_2;
-
     public bool jingjing_1Touch = false;
 
     private void OnTriggerEnter(Collider other)

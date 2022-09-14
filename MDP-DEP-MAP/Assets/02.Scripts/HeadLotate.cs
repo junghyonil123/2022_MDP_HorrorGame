@@ -18,6 +18,7 @@ public class HeadLotate : MonoBehaviour
 
 	private void Awake()
 	{
+
 		if (instance == null) //instance가 null. 즉, 시스템상에 존재하고 있지 않을때
 		{
 			instance = this; //내자신을 instance로 넣어줍니다.
@@ -30,6 +31,8 @@ public class HeadLotate : MonoBehaviour
 		}
 
 	}
+
+	public bool isCoroutineFinish = false;
 	IEnumerator FollowTarget()
 	{
 		
@@ -43,9 +46,8 @@ public class HeadLotate : MonoBehaviour
             while (true)
             {
 				this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * speed);
-				if (this.transform.rotation == Quaternion.LookRotation(dir))
+				if (isCoroutineFinish)
 				{
-					yield return new WaitForSeconds(1f);
 					break;
 				}
 				yield return null;
@@ -57,7 +59,9 @@ public class HeadLotate : MonoBehaviour
 	public void HeadRotate_Finish()
     {
 		is_head_rotation_finish = true;
+		isCoroutineFinish = true;
 		controller.GetComponent<ContinuousTurnProviderBase>().enabled = true;
 		controller.GetComponent<ContinuousMoveProviderBase>().enabled = true;
 	}
+
 }

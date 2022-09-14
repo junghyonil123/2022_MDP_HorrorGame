@@ -10,6 +10,7 @@ TagManager:
   - Dog
   - Flash
   - Floor
+  - Key
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Player
   - Dog
   - Brain
-  - 
+  - BakedLight
   - 
   - 
   - 

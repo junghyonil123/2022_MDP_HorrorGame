@@ -24,7 +24,7 @@ public class Key2Action : MonoBehaviour
     {
         
         while (girlToiletDoor.transform.rotation.y > -0.70f)
-        {Debug.Log(girlToiletDoor.transform.rotation.y);
+        {
             girlToiletDoor.transform.Rotate(new Vector3(0, -(100f / 60f), 0));
             yield return null;
         }

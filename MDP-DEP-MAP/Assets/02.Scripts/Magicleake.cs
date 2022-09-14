@@ -5,19 +5,31 @@ using UnityEngine.UI;
 
 public class Magicleake : MonoBehaviour
 {
-    public Text txet1;
-    public Text trashText;
+    int keyCount = 0;
+    public Transform endingPos;
+    public Transform playerPos;
 
     private void OnCollisionEnter(Collision collision)
     {
-        int trashCount = 0;
-
         if(collision.gameObject.tag == "Key1")
         {
-            Debug.Log(collision.gameObject.tag);
+            keyCount += 1;
             Destroy(collision.gameObject);
-            txet1.text = "정현일 1/1";
+        }
+        if (collision.gameObject.CompareTag("Key"))
+        {
+            keyCount += 1;
+            Destroy(collision.gameObject);
         }
         
+    }
+
+    private void Update()
+    {
+        if (keyCount == 4)
+        {
+            playerPos.position = endingPos.position; 
+            Debug.Log("클리어");
+        }
     }
 }

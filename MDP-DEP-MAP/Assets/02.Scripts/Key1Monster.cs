@@ -125,9 +125,11 @@ public class Key1Monster : MonoBehaviour
         rigid.angularVelocity = Vector3.zero;
     }
 
+    float stunCoolTime = 0f;
+
     void Update()
     {
-
+        stunCoolTime += Time.deltaTime;
         if (can_stun)
         {
             if (stun == false)
@@ -139,19 +141,22 @@ public class Key1Monster : MonoBehaviour
             }
             else if (stun == true)
             {
-                //스턴 상태라면 정지, WaitingTime후 움직임
-
-
-                navAgent.isStopped = true;
-                animator.SetBool("IsStun", true);
-                audioSourece.Stop();
-
-                timer += Time.deltaTime;
-                if (timer > waitingTime)
+                if (stunCoolTime >= 10f)
                 {
-                    timer = 0;
-                    stun = false;
-                    animator.SetBool("IsStun", false);
+                    //스턴 상태라면 정지, WaitingTime후 움직임
+
+
+                    navAgent.isStopped = true;
+                    animator.SetBool("IsStun", true);
+                    audioSourece.Stop();
+
+                    timer += Time.deltaTime;
+                    if (timer > waitingTime)
+                    {
+                        timer = 0;
+                        stun = false;
+                        animator.SetBool("IsStun", false);
+                    }
                 }
             }
         }
@@ -165,6 +170,7 @@ public class Key1Monster : MonoBehaviour
         {
             //플레이어와 닿았다면 killPlayer를 실행
             isCanKill = false;
+            audioSourece.Stop();
             animator.SetTrigger("CatchPlayer");
             AudioSet_catch();
             StartCoroutine("killPlayer");
@@ -172,6 +178,7 @@ public class Key1Monster : MonoBehaviour
         if (other.gameObject.tag == "Food" && isCanUseEat)
         {
             isCanUseEat = false;
+            audioSourece.Stop();
             animator.SetTrigger("Eat");
             StartCoroutine(Eat(other.transform));
             food = other.gameObject;
@@ -197,13 +204,14 @@ public class Key1Monster : MonoBehaviour
 
         //subCamera를 지속적으로 몬스터의 앞으로 이동시킴, 몬스터가 플레이어를 무는듯한 효과
 
-        for (int i = 0; i < 20000; i++)
+        for (int i = 0; i < 150; i++)
         {  
             subCamera.transform.position = playerKillPos.position + new Vector3(0f, 0f, 0f);
             subCamera.transform.eulerAngles = new Vector3(0, playerKillPos.eulerAngles.y, 0);
             yield return null;
         }
-        
+        GameOverCanvas.instance.die();
+        subCamera.SetActive(false);
     }
 
    
