@@ -13,13 +13,24 @@ public class Magicleake : MonoBehaviour
     {
         if(collision.gameObject.tag == "Key1")
         {
+
+            if (!GetComponent<AudioSource>().isPlaying)
+            {
+                GetComponent<AudioSource>().Play();
+            }
             keyCount += 1;
             Destroy(collision.gameObject);
+
         }
         if (collision.gameObject.CompareTag("Key"))
         {
+            if (!GetComponent<AudioSource>().isPlaying)
+            {
+                GetComponent<AudioSource>().Play();
+            }
             keyCount += 1;
             Destroy(collision.gameObject);
+
         }
         
     }
@@ -29,7 +40,6 @@ public class Magicleake : MonoBehaviour
         if (keyCount == 4)
         {
             playerPos.position = endingPos.position; 
-            Debug.Log("Å¬¸®¾î");
         }
     }
 }

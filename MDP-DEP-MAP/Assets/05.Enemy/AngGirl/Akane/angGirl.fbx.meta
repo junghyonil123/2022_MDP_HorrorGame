@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 1679e2eb6e9a6344c994a61f31e35389
 ModelImporter:
-  serializedVersion: 20101
+  serializedVersion: 20200
   internalIDToNameTable: []
   externalObjects:
   - first:
@@ -930,7 +930,7 @@ ModelImporter:
     - name: J_Sec_R_LowerSleeve_01
       parentName: Right elbow
       position: {x: 0.0017295585, y: 0.06679056, z: -0.014607156}
-      rotation: {x: -0.5154577, y: -0.5163754, z: 0.45166326, w: 0.5134786}
+      rotation: {x: -0.51545763, y: -0.51637536, z: 0.4516632, w: 0.5134785}
       scale: {x: 0.9999999, y: 1, z: 0.9999999}
     - name: Right wrist
       parentName: Right elbow
@@ -1119,6 +1119,7 @@ ModelImporter:
   animationType: 3
   humanoidOversampling: 1
   avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

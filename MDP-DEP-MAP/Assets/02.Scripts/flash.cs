@@ -103,13 +103,13 @@ public class flash : MonoBehaviour
         gameObject.SetActive(!gameObject.activeSelf);
     }
 
-    void OnTriggerStay(Collider other)
-    {
-        if (other.tag == "enemy")
-        {
-            enemy.stun = true;
-        }
-    }
+    //void OnTriggerStay(Collider other)
+    //{
+    //    if (other.tag == "enemy")
+    //    {
+    //        enemy.stun = true;
+    //    }
+    //}
 
 
 }

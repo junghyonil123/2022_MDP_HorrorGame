@@ -22,6 +22,7 @@ public class Key1Monster : MonoBehaviour
     public AudioClip catchAudio;
     public AudioClip walkAudio;
     public AudioClip haulAudio;
+    public AudioClip eatAudio;
 
     public GameObject mainCamera;
     public GameObject subCamera;
@@ -31,6 +32,7 @@ public class Key1Monster : MonoBehaviour
     public bool can_stun = false;
     public bool isCanFindFood = true;
     public int brain_count = 0;
+    public bool isCanUseEat = false;
 
     float timer;
     int waitingTime;
@@ -51,11 +53,11 @@ public class Key1Monster : MonoBehaviour
 
     }
 
+    private bool eatFinish = false;
     public IEnumerator Eat(Transform target)
     {
-        transform.position -= new Vector3(0f, -1.5f, 0f);
-
-        for (int i = 0; i < 100; i++)
+        transform.position -= new Vector3(0f, 2f, 0);
+        while (!eatFinish)
         {
             target.position = foodTransform.position;
             yield return null;
@@ -65,7 +67,8 @@ public class Key1Monster : MonoBehaviour
 
     public void EatFinish()
     {
-        Debug.Log("실행되쩌염");
+        eatFinish = true;
+        audioSourece.Stop();
         Destroy(food);
         isCanUseEat = true;
         isCanFindFood = true;
@@ -74,6 +77,7 @@ public class Key1Monster : MonoBehaviour
         {
             animator.SetBool("brain",true);
             animator.SetBool("CatchKey", false);
+            can_stun = false;
             navstop();
         }
         target = playerTransform;
@@ -81,9 +85,7 @@ public class Key1Monster : MonoBehaviour
 
     public void navgo()
     {
-        Debug.Log("출발합니다");
         navAgent.isStopped = false;
-        can_stun = true;
     }
 
     public void navstop()
@@ -94,10 +96,15 @@ public class Key1Monster : MonoBehaviour
     public void AudioSet_Houl()
     {
         //하울링 
-
+        isCanUseEat = true;
+        can_stun = true;
         audioSourece.clip = haulAudio;
-        if(!audioSourece.isPlaying)
+
+        if (!audioSourece.isPlaying)
+        {
             audioSourece.Play();
+        }
+
         HeadLotate.instance.HeadRotate_Finish();
     }
 
@@ -117,6 +124,17 @@ public class Key1Monster : MonoBehaviour
         audioSourece.clip = catchAudio;
         if (!audioSourece.isPlaying)
             audioSourece.Play();
+    }
+
+    public void AudioSet_Eat()
+    {
+        // 걷는소리
+
+        audioSourece.clip = eatAudio;
+        if (!audioSourece.isPlaying)
+        {
+            audioSourece.Play();
+        }
     }
 
     void freezevelocity()
@@ -145,7 +163,7 @@ public class Key1Monster : MonoBehaviour
                 {
                     //스턴 상태라면 정지, WaitingTime후 움직임
 
-
+                    
                     navAgent.isStopped = true;
                     animator.SetBool("IsStun", true);
                     audioSourece.Stop();
@@ -156,13 +174,14 @@ public class Key1Monster : MonoBehaviour
                         timer = 0;
                         stun = false;
                         animator.SetBool("IsStun", false);
+                        stunCoolTime = 0f;
                     }
                 }
             }
         }
     }
 
-    public bool isCanUseEat = true;
+
     public bool isCanKill = true;
     private void OnTriggerStay(Collider other)
     {
@@ -177,25 +196,19 @@ public class Key1Monster : MonoBehaviour
         }
         if (other.gameObject.tag == "Food" && isCanUseEat)
         {
+            eatFinish = false;
             isCanUseEat = false;
             audioSourece.Stop();
             animator.SetTrigger("Eat");
             StartCoroutine(Eat(other.transform));
             food = other.gameObject;
         }
-        else if (other.gameObject.tag == "Flash")
+        else if (other.gameObject.tag == "Flash" && can_stun)
         {
             stun = true;
         }
     }
 
-    //private void OnCollisionStay(Collision collision)
-    //{
-    //    if (collision.gameObject.tag == "Food")
-    //    {
-    //        Debug.Log("뇌만졋어용");
-    //    }
-    //}
 
     IEnumerator killPlayer()
     {

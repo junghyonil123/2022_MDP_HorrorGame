@@ -11,6 +11,7 @@ public class Key2Action : MonoBehaviour
     public GameObject girlGhost;
     public GameObject girlToiletDoor;
     public AudioSource audio;
+    
 
     public bool IsPlayerIn = false;
     public bool isTricked = false;
@@ -20,16 +21,15 @@ public class Key2Action : MonoBehaviour
     public float substractValue = 0.4f;
 
     public AudioClip kkkwang;
+    public AudioClip audio2;
     IEnumerator DoorOff()
     {
-        
-        while (girlToiletDoor.transform.rotation.y > -0.70f)
-        {
+        girlToiletDoor.GetComponent<AudioSource>().Play();
+            while (girlToiletDoor.transform.rotation.y > -0.70f)
+            {
             girlToiletDoor.transform.Rotate(new Vector3(0, -(100f / 60f), 0));
             yield return null;
         }
-        girlToiletDoor.GetComponent<AudioSource>().Play();
-        yield return new WaitForSeconds(1f);
         girlToiletDoor.GetComponent<AudioSource>().clip = kkkwang;
         girlToiletDoor.GetComponent<AudioSource>().Stop();
         girlToiletDoor.GetComponent<AudioSource>().Play();
@@ -75,6 +75,7 @@ public class Key2Action : MonoBehaviour
         girlToiletLight.SetActive(false);
         girlToiletSpotLight.SetActive(true);
         can_open = true;
+        girlToiletDoor.GetComponent<AudioSource>().clip = audio2;
     }
 
 

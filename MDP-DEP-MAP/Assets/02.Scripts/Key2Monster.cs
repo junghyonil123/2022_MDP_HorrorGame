@@ -18,7 +18,9 @@ public class Key2Monster : MonoBehaviour
     public GameObject mainCamera;
     public GameObject subCamera;
     public Avatar avatar;
-   
+    private bool isCanKill = true;
+
+    public bool isKilling = false;
     public float dmg_Timer;
     public bool awakeSuccess = false;
 
@@ -44,10 +46,10 @@ public class Key2Monster : MonoBehaviour
 
         }
 
+        animator.avatar = avatar;
         animator.SetBool("isWalk", true);
         navAgent.isStopped = false;
         awakeSuccess = true;
-
 
     }
 
@@ -89,21 +91,23 @@ public class Key2Monster : MonoBehaviour
         }
     }
 
-    private bool isCanKill = true;
+    
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && isCanKill)
+        Debug.Log("ºÎµúÈû");
+        Debug.Log(other.tag == "Player");
+        Debug.Log(other.tag == "Player" && isCanKill);
+
+        if (other.tag == "Player" && isCanKill)
         {
+            isKilling = true;
+            isCanKill = false;
             audiosourece.clip = catch_audio;
             audiosourece.Play();
             StartCoroutine(killPlayer());
             animator.SetBool("isWalk", false);
             navAgent.isStopped = true;
-        }
-        else if (other.tag == "Flash")
-        {
-            stun = true;
         }
     }
 
@@ -134,14 +138,9 @@ public class Key2Monster : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Flash" && awakeSuccess)
+        if (other.tag == "Flash" && awakeSuccess && !isKilling)
         {
             dmg_Timer += Time.deltaTime;
-            if (dmg_Timer >= 1)
-            {
-                GameObject.Find("Girl_Ghost_Particle").GetComponent<Girl_Ghost_Particle>().StartCoroutine("Particle_Start");
-            }
-
             if (dmg_Timer >= 3)
             {
                 Destroy(gameObject);

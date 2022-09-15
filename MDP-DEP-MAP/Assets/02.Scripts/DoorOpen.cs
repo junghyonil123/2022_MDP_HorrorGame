@@ -25,7 +25,8 @@ public class DoorOpen : MonoBehaviour
         for (int i = 0; i < 90; i++)
         {
             transform.Rotate(new Vector3(0, 1 * last_state, 0));
-            GetComponent<AudioSource>().Play();
+            if(!GetComponent<AudioSource>().isPlaying)
+                GetComponent<AudioSource>().Play();
             yield return null;
         }
         last_state *= -1;

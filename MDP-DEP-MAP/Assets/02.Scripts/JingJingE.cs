@@ -15,7 +15,7 @@ public class JingJingE : MonoBehaviour
     {
         yield return new WaitForSeconds(4f);
 
-        for (int i = 0; i < 200; i++)
+        for (int i = 0; i < 100; i++)
         {
             transform.position += new Vector3(0.02f, 0f, 0f);
             yield return null;

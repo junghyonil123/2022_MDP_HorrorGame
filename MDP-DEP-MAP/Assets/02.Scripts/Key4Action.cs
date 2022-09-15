@@ -9,7 +9,7 @@ public class Key4Action : MonoBehaviour
     public bool isPass_2 = false;
 
     public GameObject jingjing_1;
-    public GameObject jingjing_2;
+    public List<GameObject> jingjing_23456 = new List<GameObject>();
     public bool jingjing_1Touch = false;
 
     private void OnTriggerEnter(Collider other)
@@ -24,9 +24,13 @@ public class Key4Action : MonoBehaviour
         if (jingjing_1Touch && !isPass_2)
         {
             isPass_2 = true;
-            jingjing_2.SetActive(true);
-            jingjing_2.GetComponent<AudioSource>().Play();
-            StartCoroutine(DestroyJingJing2());
+            foreach (var item in jingjing_23456)
+            {
+                item.SetActive(true);
+                item.GetComponent<AudioSource>().Play();
+                StartCoroutine(DestroyJingJing2());
+            }
+            
         }
     }
 
@@ -49,15 +53,21 @@ public class Key4Action : MonoBehaviour
     
     public IEnumerator DestroyJingJing2()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
         
 
         for (int i = 0; i < 200; i++)
         {
-            jingjing_2.transform.position -= new Vector3(0f, -0.05f, 0f);
+            foreach (var item in jingjing_23456)
+            {
+                item.transform.position -= new Vector3(0f, -0.05f, 0f);
+            }
             yield return null;
         }
+        foreach (var item in jingjing_23456)
+        {
+            Destroy(item);
+        }
 
-        Destroy(jingjing_2);
     }
 }
