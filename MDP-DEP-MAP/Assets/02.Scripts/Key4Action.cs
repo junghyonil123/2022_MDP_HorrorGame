@@ -18,7 +18,7 @@ public class Key4Action : MonoBehaviour
         {
             isPass = true;
             LightOn();
-            jingjing_1.GetComponent<AudioSource>().Play();
+            Invoke("JingJingCry", 2f);
         }
 
         if (jingjing_1Touch && !isPass_2)
@@ -68,6 +68,10 @@ public class Key4Action : MonoBehaviour
         {
             Destroy(item);
         }
+    }
 
+    public void JingJingCry()
+    {
+        jingjing_1.GetComponent<AudioSource>().Play();
     }
 }

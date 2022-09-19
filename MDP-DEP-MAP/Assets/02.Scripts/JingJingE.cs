@@ -24,5 +24,6 @@ public class JingJingE : MonoBehaviour
         GameObject.Find("Key4Point").GetComponent<Key4Action>().LightOff();
 
         GetComponent<AudioSource>().Stop();
+        Destroy(gameObject);
     }
 }

@@ -15,6 +15,7 @@ public class Key2Monster : MonoBehaviour
     public AudioClip catch_audio;
     public AudioClip laugh;
     public AudioClip cry_audio;
+    public AudioClip landing;
     public GameObject mainCamera;
     public GameObject subCamera;
     public Avatar avatar;
@@ -79,25 +80,13 @@ public class Key2Monster : MonoBehaviour
             freezevelocity();
             navAgent.SetDestination(target.position);
         }
-        else if (stun == true)
-        {
-            navAgent.isStopped = true;
-            stun_Timer += Time.deltaTime;
-            if (stun_Timer > stunTime)
-            {
-                stun_Timer = 0;
-                stun = false;
-            }
-        }
+
     }
 
-    
+
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("ºÎµúÈû");
-        Debug.Log(other.tag == "Player");
-        Debug.Log(other.tag == "Player" && isCanKill);
 
         if (other.tag == "Player" && isCanKill)
         {
@@ -126,7 +115,8 @@ public class Key2Monster : MonoBehaviour
             subCamera.transform.eulerAngles = new Vector3(0, playerKillPos.eulerAngles.y, 0);
             yield return null;
         }
-            GameOverCanvas.instance.die();
+        GameOverCanvas.instance.die();
+        Destroy(gameObject);
     }
 
     public  bool is_can_hit = true;
@@ -136,10 +126,13 @@ public class Key2Monster : MonoBehaviour
        is_can_hit = true;
     }
 
+
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Flash" && awakeSuccess && !isKilling)
         {
+            navAgent.isStopped = true;
+
             dmg_Timer += Time.deltaTime;
             if (dmg_Timer >= 3)
             {

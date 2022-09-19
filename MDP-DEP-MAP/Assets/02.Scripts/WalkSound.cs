@@ -22,7 +22,7 @@ public class WalkSound : MonoBehaviour
         if(lastPos - nowPos != Vector3.zero)
         {
             if (!audio.isPlaying)
-            audio.Play();
+                audio.Play();
         }
         else if(lastPos - nowPos == Vector3.zero)
         {

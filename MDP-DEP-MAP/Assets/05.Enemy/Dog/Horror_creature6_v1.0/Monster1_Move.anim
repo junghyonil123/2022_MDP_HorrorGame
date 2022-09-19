@@ -56606,7 +56606,7 @@ AnimationClip:
   - time: 0
     functionName: AudioSet_Walk
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 11500000, guid: 2d22922d265a6a54eb49db18ce3cb57f, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

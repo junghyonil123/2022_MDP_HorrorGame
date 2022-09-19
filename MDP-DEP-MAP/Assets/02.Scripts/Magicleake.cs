@@ -39,6 +39,7 @@ public class Magicleake : MonoBehaviour
     {
         if (keyCount == 4)
         {
+            keyCount = 0;
             playerPos.position = endingPos.position; 
         }
     }

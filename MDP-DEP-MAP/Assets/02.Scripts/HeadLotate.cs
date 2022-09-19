@@ -53,7 +53,7 @@ public class HeadLotate : MonoBehaviour
 				yield return null;
 			}
 		}
-		
+
 	}
 
 	public void HeadRotate_Finish()

@@ -56,13 +56,14 @@ public class Key1Monster : MonoBehaviour
     private bool eatFinish = false;
     public IEnumerator Eat(Transform target)
     {
-        transform.position -= new Vector3(0f, 2f, 0);
+        transform.Translate(new Vector3(0f, -2f, 0f));
+        navstop();
         while (!eatFinish)
         {
             target.position = foodTransform.position;
             yield return null;
         }
-        yield return new WaitForSeconds(2f);
+        //yield return new WaitForSeconds(2f);
     }
 
     public void EatFinish()
@@ -72,8 +73,11 @@ public class Key1Monster : MonoBehaviour
         Destroy(food);
         isCanUseEat = true;
         isCanFindFood = true;
+        can_stun = true
+            ;
         brain_count += 1;
-        if(brain_count == 3)
+        navgo();
+        if (brain_count == 3)
         {
             animator.SetBool("brain",true);
             animator.SetBool("CatchKey", false);
@@ -198,12 +202,14 @@ public class Key1Monster : MonoBehaviour
         {
             eatFinish = false;
             isCanUseEat = false;
+            can_stun = false;
             audioSourece.Stop();
             animator.SetTrigger("Eat");
             StartCoroutine(Eat(other.transform));
+            food.GetComponent<BoxCollider>().enabled = false;
             food = other.gameObject;
         }
-        else if (other.gameObject.tag == "Flash" && can_stun)
+        else if (other.gameObject.tag == "Flash" && can_stun && stunCoolTime >= 10)
         {
             stun = true;
         }
@@ -212,6 +218,8 @@ public class Key1Monster : MonoBehaviour
 
     IEnumerator killPlayer()
     {
+        can_stun = false;
+
         mainCamera.SetActive(false);
         subCamera.SetActive(true); //subCamera»ç¿ë
 
@@ -225,6 +233,7 @@ public class Key1Monster : MonoBehaviour
         }
         GameOverCanvas.instance.die();
         subCamera.SetActive(false);
+        Destroy(gameObject);
     }
 
    
