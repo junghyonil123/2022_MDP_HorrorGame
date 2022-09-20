@@ -31,7 +31,10 @@
 
 <br>
 
-## 플레이영상👨‍👦‍👦
+## 플레이영상👨‍👦‍
 [![제목 없음](https://user-images.githubusercontent.com/90584642/191177612-e0089cf0-6afc-4fc7-9523-619d71b9d18d.png)](https://www.youtube.com/watch?v=jb_xNKjx8hM&t=1s)
 
+<br>
 
+## 게임 다운로드
+[Dead_Night Of Dormitory Download](https://drive.google.com/file/d/1uLsdwlIcF7GrDXa_8vDRsD7f4y_EsAAD/view?usp=sharing)
