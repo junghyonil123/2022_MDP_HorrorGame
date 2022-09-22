@@ -73,8 +73,7 @@ public class Key1Monster : MonoBehaviour
         Destroy(food);
         isCanUseEat = true;
         isCanFindFood = true;
-        can_stun = true
-            ;
+        can_stun = true;
         brain_count += 1;
         navgo();
         if (brain_count == 3)
@@ -200,6 +199,7 @@ public class Key1Monster : MonoBehaviour
         }
         if (other.gameObject.tag == "Food" && isCanUseEat)
         {
+            food = other.gameObject;
             eatFinish = false;
             isCanUseEat = false;
             can_stun = false;
@@ -207,7 +207,6 @@ public class Key1Monster : MonoBehaviour
             animator.SetTrigger("Eat");
             StartCoroutine(Eat(other.transform));
             food.GetComponent<BoxCollider>().enabled = false;
-            food = other.gameObject;
         }
         else if (other.gameObject.tag == "Flash" && can_stun && stunCoolTime >= 10)
         {

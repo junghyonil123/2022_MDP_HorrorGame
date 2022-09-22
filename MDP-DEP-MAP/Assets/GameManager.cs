@@ -5,8 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public void ReStart()
+    private void OnTriggerEnter(Collider other)
     {
-        SceneManager.LoadScene(0);
+        
+        if (other.CompareTag("Player"))
+        {   Debug.Log(other.name);
+            SceneManager.LoadScene(0);
+            Debug.Log("Enter");
+        }
     }
 }

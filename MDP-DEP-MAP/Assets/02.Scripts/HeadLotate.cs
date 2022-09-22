@@ -45,13 +45,13 @@ public class HeadLotate : MonoBehaviour
 			dir.Normalize();
             while (true)
             {
-				this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * speed);
-				if (isCoroutineFinish)
-				{
-					break;
-				}
-				yield return null;
-			}
+                this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * speed);
+                if (isCoroutineFinish)
+                {
+                    break;
+                }
+                yield return null;
+            }
 		}
 
 	}
