@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
         
         if (other.CompareTag("Player"))
         {   Debug.Log(other.name);
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             Debug.Log("Enter");
         }
     }

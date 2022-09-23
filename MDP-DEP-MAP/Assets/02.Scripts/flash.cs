@@ -33,7 +33,6 @@ public class flash : MonoBehaviour
    
     private void Toggle(InputAction.CallbackContext context)
     {
-       
         isLightOn = !gameObject.activeSelf;
         gameObject.SetActive(!gameObject.activeSelf);
     }

@@ -7,6 +7,7 @@ public class Key4Action : MonoBehaviour
     
     public bool isPass = false;
     public bool isPass_2 = false;
+    public bool touchdoll = false;
 
     public GameObject jingjing_1;
     public List<GameObject> jingjing_23456 = new List<GameObject>();
@@ -14,18 +15,18 @@ public class Key4Action : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player" && !isPass)
+        if (other.tag == "Player" && !isPass)
         {
             isPass = true;
             LightOn();
             Invoke("JingJingCry", 2f);
         }
 
-        if (jingjing_1Touch && !isPass_2)
-        {
-            isPass_2 = true;
+        if ((jingjing_1Touch || touchdoll) && !isPass_2)
+        {            isPass_2 = true;
             foreach (var item in jingjing_23456)
             {
+                Destroy(jingjing_1);
                 item.SetActive(true);
                 item.GetComponent<AudioSource>().Play();
                 StartCoroutine(DestroyJingJing2());
@@ -73,5 +74,10 @@ public class Key4Action : MonoBehaviour
     public void JingJingCry()
     {
         jingjing_1.GetComponent<AudioSource>().Play();
+    }
+
+    public void TouchDoll()
+    {
+        touchdoll = true;
     }
 }
