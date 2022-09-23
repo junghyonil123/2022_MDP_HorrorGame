@@ -37,4 +37,4 @@
 <br>
 
 ## 게임 다운로드
-[Dead_Night Of Dormitory Download](https://drive.google.com/file/d/1uLsdwlIcF7GrDXa_8vDRsD7f4y_EsAAD/view?usp=sharing)
+[Dead_Night Of Dormitory Download](https://drive.google.com/file/d/14PDHhE3wiatZIAD1P4RcZgEwTGF8KQYb/view?usp=sharing)
