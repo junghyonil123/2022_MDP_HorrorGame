@@ -38,3 +38,8 @@
 
 ## 게임 다운로드
 [Dead_Night Of Dormitory Download](https://drive.google.com/file/d/14PDHhE3wiatZIAD1P4RcZgEwTGF8KQYb/view?usp=sharing)
+
+<br>
+
+## 기록
+2022. 10. 12 인천직업교육박람회(송도 컨벤시아) 전시
